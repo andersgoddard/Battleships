@@ -2,10 +2,15 @@ import pytest
 from battleships import *
 from ocean import *
 
+ocean = Ocean()
+
 def test_create_ocean():
-    ocean = Ocean()
     assert ocean._width == 10
     assert ocean._height == 10
+    
+def test_create_empty_ocean():
+    assert ocean.get_value_at(3, 4) == "~"
+    assert ocean.get_value_at(8, 8) == "~"
     
 
 # def test_is_sunk1():
