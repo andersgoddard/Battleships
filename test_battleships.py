@@ -1,6 +1,7 @@
 import pytest
 from battleships import *
 from ocean import *
+from space import *
 
 ocean = Ocean()
 
@@ -9,8 +10,14 @@ def test_create_ocean():
     assert ocean._height == 10
     
 def test_create_empty_ocean():
-    assert ocean.get_value_at(3, 4) == "~"
-    assert ocean.get_value_at(8, 8) == "~"
+    assert ocean.get_char_at(3, 4) == "~"
+    assert ocean.get_char_at(8, 8) == "~"
+    
+def test_create_space():
+    space1 = EmptySpace()
+    space2 = OccupiedSpace()
+    assert space1.get_char_representation() == "~"
+    assert space2.get_char_representation() == "X"
     
 
 # def test_is_sunk1():
