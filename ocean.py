@@ -13,8 +13,8 @@ class Ocean:
         self.ocean = []
         self.create_empty_ocean()
         
-    def set_space_at(self, row, column):
-        self.ocean[row][column] = Space()
+    def set_space_at(self, row, column, space):
+        self.ocean[row][column] = space
         
     def get_space_at(self, row, column):
         return self.ocean[row][column]

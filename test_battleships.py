@@ -24,7 +24,7 @@ def test_hit_space_in_ocean():
     assert ocean.get_char_at(2, 3) == 'X'
     
 def test_set_space_at():
-    ocean.set_space_at(4, 5)
+    ocean.set_space_at(4, 5, Space())
     assert ocean.get_char_at(4, 5) == '~'
     
 def test_create_ships():
@@ -41,36 +41,40 @@ def test_create_ships():
     assert submarine.get_length() == 1
     assert submarine.get_char_representation() == 'S'
    
-# def test_is_sunk1():
+# def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     # assert is_sunk(s) == True
     # #add at least four more tests for is_sunk by the project submission deadline
 
-# def test_ship_type1():
+# def test_ship_type():
     # #add at least one test for ship_type by the deadline of session 7 assignment
     # #provide at least five tests in total for ship_type by the project submission deadline
 
-# def test_is_open_sea1():
-    # #add at least one test for open_sea by the deadline of session 7 assignment
-    # #provide at least five tests in total for open_sea by the project submission deadline
-
-# def test_ok_to_place_ship_at1():
+def test_is_open_sea():
+    #add at least one test for open_sea by the deadline of session 7 assignment
+    #provide at least five tests in total for open_sea by the project submission deadline
+    ocean.set_space_at(4, 5, Space())
+    assert ocean.get_space_at(4, 5).is_open_sea() == True
+    ocean.set_space_at(7, 7, Submarine())
+    assert ocean.get_space_at(7, 7).is_open_sea() == False
+    
+# def test_ok_to_place_ship_at():
     # #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
     # #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline
 
-# def test_place_ship_at1():
+# def test_place_ship_at():
     # #add at least one test for place_ship_at by the deadline of session 7 assignment
     # #provide at least five tests in total for place_ship_at by the project submission deadline
 
-# def test_check_if_hits1():
+# def test_check_if_hits():
     # #add at least one test for check_if_hits by the deadline of session 7 assignment
     # #provide at least five tests in total for check_if_hits by the project submission deadline
 
-# def test_hit1():
+# def test_hit():
     # #add at least one test for hit by the deadline of session 7 assignment
     # #provide at least five tests in total for hit by the project submission deadline
 
-# def test_are_unsunk_ships_left1():
+# def test_are_unsunk_ships_left():
     # #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
     # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
     

@@ -1,9 +1,12 @@
-from space import *
+from space import *  
 
 class Ship(Space):
     def get_length(self):
         return self._length
-    
+        
+    def is_open_sea(self):
+        return False
+
 class Battleship(Ship):
     def __init__(self):
         self._length = 4
