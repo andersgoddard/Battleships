@@ -41,6 +41,20 @@ def test_create_ships():
     assert submarine.get_length() == 1
     assert submarine.get_char_representation() == 'S'
    
+def test_place_individual_ships():
+    battleship = Battleship()
+    ocean.place_ship_at(1, 1, battleship, horizontal=True)
+    assert ocean.get_type_at(1, 1) == "Battleship"
+    assert ocean.get_type_at(1, 2) == "Battleship"
+    assert ocean.get_type_at(1, 3) == "Battleship"
+    assert ocean.get_type_at(1, 4) == "Battleship"
+    
+    cruiser = Cruiser()
+    ocean.place_ship_at(4, 4, cruiser, horizontal=False)
+    assert ocean.get_type_at(4, 4) == "Cruiser"
+    assert ocean.get_type_at(5, 4) == "Cruiser"
+    assert ocean.get_type_at(6, 4) == "Cruiser"
+     
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     # assert is_sunk(s) == True
@@ -49,6 +63,7 @@ def test_create_ships():
 # def test_ship_type():
     # #add at least one test for ship_type by the deadline of session 7 assignment
     # #provide at least five tests in total for ship_type by the project submission deadline
+  
 
 def test_is_open_sea():
     #add at least one test for open_sea by the deadline of session 7 assignment

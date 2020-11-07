@@ -25,3 +25,13 @@ class Ocean:
     def take_shot(self, row, column):
         successful_hit = True
         self.get_space_at(row, column).take_shot(successful_hit)
+        
+    def place_ship_at(self, row, column, ship, horizontal):
+        for i in range(ship.get_length()):
+            if horizontal:
+                self.set_space_at(row, column+i, ship)
+            else:
+                self.set_space_at(row+i, column, ship)
+        
+    def get_type_at(self, row, column):
+        return self.get_space_at(row, column).get_ship_type()
