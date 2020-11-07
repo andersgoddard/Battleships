@@ -9,33 +9,37 @@ ocean = Ocean()
 def test_create_ocean():
     assert ocean._width == 10
     assert ocean._height == 10
-    assert ocean.get_char_at(3, 4) == "~"
-    assert ocean.get_char_at(8, 8) == "~"
+    assert ocean.get_char_at(3, 4) == '~'
+    assert ocean.get_char_at(8, 8) == '~'
     
 def test_create_and_hit_space():
     space1 = Space()
-    assert space1.get_char_representation() == "~"
+    assert space1.get_char_representation() == '~'
     successful_hit = True
     space1.take_shot(successful_hit)
-    assert space1.get_char_representation() == "X"
+    assert space1.get_char_representation() == 'X'
 
 def test_hit_space_in_ocean():
     ocean.take_shot(2, 3)
-    assert ocean.get_char_at(2, 3) == "X"
+    assert ocean.get_char_at(2, 3) == 'X'
     
 def test_set_space_at():
     ocean.set_space_at(4, 5)
-    assert ocean.get_char_at(4, 5) == "~"
+    assert ocean.get_char_at(4, 5) == '~'
     
 def test_create_ships():
     battleship = Battleship()
     assert battleship.get_length() == 4
+    assert battleship.get_char_representation() == 'B'
     cruiser = Cruiser()
     assert cruiser.get_length() == 3
+    assert cruiser.get_char_representation() == 'C'
     destroyer = Destroyer()
     assert destroyer.get_length() == 2
+    assert destroyer.get_char_representation() == 'D'
     submarine = Submarine()
     assert submarine.get_length() == 1
+    assert submarine.get_char_representation() == 'S'
    
 # def test_is_sunk1():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
