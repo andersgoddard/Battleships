@@ -2,6 +2,7 @@ import pytest
 from battleships import *
 from ocean import *
 from space import *
+from ships import *
 
 ocean = Ocean()
 
@@ -14,12 +15,25 @@ def test_create_empty_ocean():
     assert ocean.get_char_at(8, 8) == "~"
     
 def test_create_space():
-    space1 = EmptySpace()
-    space2 = OccupiedSpace()
+    space1 = Space()
     assert space1.get_char_representation() == "~"
-    assert space2.get_char_representation() == "X"
+    space1.take_shot()
+    assert space1.get_char_representation() == "X"
     
-
+def test_set_space_at():
+    ocean.set_space_at(4, 5)
+    assert ocean.get_char_at(4, 5) == "~"
+    
+def test_create_ships():
+    battleship = Battleship()
+    assert battleship.get_length() == 4
+    cruiser = Cruiser()
+    assert cruiser.get_length() == 3
+    destroyer = Destroyer()
+    assert destroyer.get_length() == 2
+    submarine = Submarine()
+    assert submarine.get_length() == 1
+   
 # def test_is_sunk1():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     # assert is_sunk(s) == True
