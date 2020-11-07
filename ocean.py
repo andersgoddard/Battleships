@@ -13,8 +13,15 @@ class Ocean:
         self.ocean = []
         self.create_empty_ocean()
         
-    def get_char_at(self, row, column):
-        return self.ocean[row][column].get_char_representation()
-        
     def set_space_at(self, row, column):
         self.ocean[row][column] = Space()
+        
+    def get_space_at(self, row, column):
+        return self.ocean[row][column]
+        
+    def get_char_at(self, row, column):
+        return self.get_space_at(row, column).get_char_representation()
+        
+    def take_shot(self, row, column):
+        successful_hit = True
+        self.get_space_at(row, column).take_shot(successful_hit)

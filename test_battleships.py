@@ -9,16 +9,19 @@ ocean = Ocean()
 def test_create_ocean():
     assert ocean._width == 10
     assert ocean._height == 10
-    
-def test_create_empty_ocean():
     assert ocean.get_char_at(3, 4) == "~"
     assert ocean.get_char_at(8, 8) == "~"
     
-def test_create_space():
+def test_create_and_hit_space():
     space1 = Space()
     assert space1.get_char_representation() == "~"
-    space1.take_shot()
+    successful_hit = True
+    space1.take_shot(successful_hit)
     assert space1.get_char_representation() == "X"
+
+def test_hit_space_in_ocean():
+    ocean.take_shot(2, 3)
+    assert ocean.get_char_at(2, 3) == "X"
     
 def test_set_space_at():
     ocean.set_space_at(4, 5)
