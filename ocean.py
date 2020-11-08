@@ -30,6 +30,7 @@ class Ocean:
         self.get_space_at(row, column).take_shot(successful_hit)
         
     def place_ship_at(self, row, column, ship, horizontal):
+        resulting_closed_positions = []
         for i in range(ship.get_length()):
             if horizontal:
                 position = (row, column+i)
@@ -39,11 +40,17 @@ class Ocean:
                 position = (row+i, column)
                 self.set_space_at(row+i, column, ship)
                 ship.add_position(row+i, column)
-            if position in self.open_ocean_positions:
-                self.open_ocean_positions.remove(position)
+            resulting_closed_positions.append(position)
+            
+        self.remove_closed_positions(resulting_closed_positions)
         
     def get_type_at(self, row, column):
         return self.get_space_at(row, column).get_ship_type()
         
     def is_open_position(self, position):
         return (position in self.open_ocean_positions)
+        
+    def remove_closed_positions(self, positions):
+        for position in positions:
+            if position in self.open_ocean_positions:
+                self.open_ocean_positions.remove(position)
