@@ -28,32 +28,41 @@ def test_set_space_at():
     assert ocean.get_char_at(4, 5) == '~'
     
 def test_create_ships():
-    battleship = Battleship()
-    assert battleship.get_length() == 4
-    assert battleship.get_char_representation() == 'B'
-    cruiser = Cruiser()
-    assert cruiser.get_length() == 3
-    assert cruiser.get_char_representation() == 'C'
-    destroyer = Destroyer()
-    assert destroyer.get_length() == 2
-    assert destroyer.get_char_representation() == 'D'
-    submarine = Submarine()
-    assert submarine.get_length() == 1
-    assert submarine.get_char_representation() == 'S'
+    battleship1 = Battleship()
+    assert battleship1.get_length() == 4
+    assert battleship1.get_char_representation() == 'B'
+    
+    cruiser1 = Cruiser()
+    assert cruiser1.get_length() == 3
+    assert cruiser1.get_char_representation() == 'C'
+    
+    destroyer1 = Destroyer()
+    assert destroyer1.get_length() == 2
+    assert destroyer1.get_char_representation() == 'D'
+    
+    submarine1 = Submarine()
+    assert submarine1.get_length() == 1
+    assert submarine1.get_char_representation() == 'S'
    
 def test_place_individual_ships():
-    battleship = Battleship()
-    ocean.place_ship_at(1, 1, battleship, horizontal=True)
+    battleship2 = Battleship()
+    ocean.place_ship_at(1, 1, battleship2, horizontal=True)
     assert ocean.get_type_at(1, 1) == "Battleship"
     assert ocean.get_type_at(1, 2) == "Battleship"
     assert ocean.get_type_at(1, 3) == "Battleship"
     assert ocean.get_type_at(1, 4) == "Battleship"
     
-    cruiser = Cruiser()
-    ocean.place_ship_at(4, 4, cruiser, horizontal=False)
+    cruiser2 = Cruiser()
+    ocean.place_ship_at(4, 4, cruiser2, horizontal=False)
     assert ocean.get_type_at(4, 4) == "Cruiser"
     assert ocean.get_type_at(5, 4) == "Cruiser"
     assert ocean.get_type_at(6, 4) == "Cruiser"
+    assert ocean.get_char_at(7, 4) == '~'
+    
+def test_get_ship_positions():
+    battleship3 = Battleship()
+    ocean.place_ship_at(2, 2, battleship3, horizontal=True)
+    assert battleship3.get_ship_positions() == [(2, 2), (2, 3), (2, 4), (2, 5)]
      
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
