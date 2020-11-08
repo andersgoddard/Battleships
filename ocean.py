@@ -29,8 +29,30 @@ class Ocean:
         successful_hit = True
         self.get_space_at(row, column).take_shot(successful_hit)
         
+    def get_surrounding_positions(self, position):
+        surrounding_positions = set()
+        row = position[0]
+        column = position[1]
+        
+        surrounding_positions.add((row-1, column-1))
+        surrounding_positions.add((row-1, column))
+        surrounding_positions.add((row-1, column+1))
+        surrounding_positions.add((row, column-1))
+        surrounding_positions.add((row, column))
+        surrounding_positions.add((row, column+1))
+        surrounding_positions.add((row+1, column-1))
+        surrounding_positions.add((row+1, column))
+        surrounding_positions.add((row+1, column+1))
+        
+        return surrounding_positions
+        
+    def remove_closed_positions(self, positions):
+        for position in positions:
+            if position in self.open_ocean_positions:
+                self.open_ocean_positions.remove(position)
+        
     def place_ship_at(self, row, column, ship, horizontal):
-        resulting_closed_positions = []
+        resulting_closed_positions = set()
         for i in range(ship.get_length()):
             if horizontal:
                 position = (row, column+i)
@@ -40,9 +62,10 @@ class Ocean:
                 position = (row+i, column)
                 self.set_space_at(row+i, column, ship)
                 ship.add_position(row+i, column)
-            resulting_closed_positions.append(position)
+            resulting_closed_positions.add(position)
+            resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
             
-        self.remove_closed_positions(resulting_closed_positions)
+        self.remove_closed_positions(list(resulting_closed_positions))
         
     def get_type_at(self, row, column):
         return self.get_space_at(row, column).get_ship_type()
@@ -50,7 +73,3 @@ class Ocean:
     def is_open_position(self, position):
         return (position in self.open_ocean_positions)
         
-    def remove_closed_positions(self, positions):
-        for position in positions:
-            if position in self.open_ocean_positions:
-                self.open_ocean_positions.remove(position)
