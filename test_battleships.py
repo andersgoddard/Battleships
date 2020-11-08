@@ -4,9 +4,10 @@ from ocean import *
 from space import *
 from ships import *
 
-ocean = Ocean()
+
 
 def test_create_ocean():
+    ocean = Ocean()
     assert ocean._width == 10
     assert ocean._height == 10
     assert ocean.get_char_at(3, 4) == '~'
@@ -20,10 +21,12 @@ def test_create_and_hit_space():
     assert space1.get_char_representation() == 'X'
 
 def test_hit_space_in_ocean():
+    ocean = Ocean()
     ocean.take_shot(2, 3)
     assert ocean.get_char_at(2, 3) == 'X'
     
 def test_set_space_at():
+    ocean = Ocean()
     ocean.set_space_at(4, 5, Space())
     assert ocean.get_char_at(4, 5) == '~'
     
@@ -45,6 +48,7 @@ def test_create_ships():
     assert submarine1.get_char_representation() == 'S'
    
 def test_place_individual_ships():
+    ocean = Ocean()
     battleship2 = Battleship()
     ocean.place_ship_at(1, 1, battleship2, horizontal=True)
     assert ocean.get_type_at(1, 1) == "Battleship"
@@ -60,10 +64,27 @@ def test_place_individual_ships():
     assert ocean.get_char_at(7, 4) == '~'
     
 def test_get_ship_positions():
+    ocean = Ocean()
     battleship3 = Battleship()
     ocean.place_ship_at(2, 2, battleship3, horizontal=True)
     assert battleship3.get_ship_positions() == [(2, 2), (2, 3), (2, 4), (2, 5)]
-     
+    cruiser3 = Cruiser()
+    ocean.place_ship_at(4, 4, cruiser3, horizontal=False)
+    assert cruiser3.get_ship_positions() == [(4, 4), (5, 4), (6, 4)]
+    
+def test_check_open_position():
+    ocean = Ocean()
+    assert (ocean.is_open_position((2, 2))) == True
+    assert (ocean.is_open_position((2, 3))) == True
+    assert (ocean.is_open_position((2, 4))) == True
+    assert (ocean.is_open_position((2, 5))) == True
+    battleship4 = Battleship()
+    ocean.place_ship_at(2, 2, battleship4, horizontal=True)
+    assert (ocean.is_open_position((2, 2))) == False
+    assert (ocean.is_open_position((2, 3))) == False
+    assert (ocean.is_open_position((2, 4))) == False
+    assert (ocean.is_open_position((2, 5))) == False
+    
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     # assert is_sunk(s) == True
@@ -77,6 +98,7 @@ def test_get_ship_positions():
 def test_is_open_sea():
     #add at least one test for open_sea by the deadline of session 7 assignment
     #provide at least five tests in total for open_sea by the project submission deadline
+    ocean = Ocean()
     ocean.set_space_at(4, 5, Space())
     assert ocean.get_space_at(4, 5).is_open_sea() == True
     ocean.set_space_at(7, 7, Submarine())
