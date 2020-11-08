@@ -188,9 +188,22 @@ def test_check_open_position():
     
     #check random empty space
     assert (ocean.is_open_position((8, 6))) == True
-    
+
 def test_edge_case_open_positions():
-    pass
+    ocean = Ocean()
+    ocean.place_ship_at(0, 0, Battleship(), horizontal=True)
+    assert (ocean.is_open_position((0, 0))) == False
+    assert (ocean.is_open_position((0, 1))) == False
+    assert (ocean.is_open_position((0, 2))) == False
+    assert (ocean.is_open_position((0, 3))) == False
+    assert (ocean.is_open_position((0, 4))) == False
+    assert (ocean.is_open_position((1, 0))) == False
+    assert (ocean.is_open_position((1, 1))) == False
+    assert (ocean.is_open_position((1, 2))) == False
+    assert (ocean.is_open_position((1, 3))) == False
+    assert (ocean.is_open_position((1, 4))) == False
+    assert (ocean.is_open_position((1, 5))) == True
+
     
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
