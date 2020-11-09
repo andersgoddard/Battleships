@@ -26,8 +26,8 @@ class Ocean:
         return self.get_space_at(row, column).get_char_representation()
         
     def take_shot(self, row, column):
-        successful_hit = True
-        self.get_space_at(row, column).take_shot(successful_hit)
+        position = (row, column)
+        self.get_space_at(row, column).check_shot(position)
         
     def get_surrounding_positions(self, position):
         surrounding_positions = set()
@@ -55,6 +55,7 @@ class Ocean:
         ship.set_horizontal_bool(horizontal)
         ship.set_starting_row(row)
         ship.set_starting_column(column)
+        
         resulting_closed_positions = set()
         for i in range(ship.get_length()):
             if horizontal:

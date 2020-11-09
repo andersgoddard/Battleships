@@ -4,6 +4,7 @@ from space import *
 
 class Ship(Space):   
     def __init__(self):
+        self.is_empty_space = False
         self.positions = []
         self.hits = []
         self.horizontal = None
@@ -43,6 +44,12 @@ class Ship(Space):
         
     def get_starting_column(self):
         return self.starting_column
+        
+    def check_shot(self, position):
+        self.hits.append(position)
+        
+    def get_hits(self):
+        return self.hits
 
 class Battleship(Ship):
     def __init__(self):
