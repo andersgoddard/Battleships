@@ -7,6 +7,8 @@ class Ship(Space):
         self.positions = []
         self.hits = []
         self.horizontal = None
+        self.starting_row = -1
+        self.starting_column = -1
 
     def get_length(self):
         return self._length
@@ -23,12 +25,24 @@ class Ship(Space):
         
     def get_ship_positions(self):
         return self.positions
+
+    def set_horizontal_bool(self, horizontal):
+        self.horizontal = horizontal
         
     def is_horizontal(self):
         return self.horizontal
         
-    def set_horizontal_bool(self, horizontal):
-        self.horizontal = horizontal
+    def set_starting_row(self, row):
+        self.starting_row = row
+        
+    def get_starting_row(self):
+        return self.starting_row
+        
+    def set_starting_column(self, column):
+        self.starting_column = column
+        
+    def get_starting_column(self):
+        return self.starting_column
 
 class Battleship(Ship):
     def __init__(self):

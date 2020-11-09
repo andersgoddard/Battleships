@@ -79,6 +79,13 @@ def test_get_ship_positions():
     ocean.place_ship_at(4, 4, cruiser3, horizontal=False)
     assert cruiser3.get_ship_positions() == [(4, 4), (5, 4), (6, 4)]
     
+def test_get_starting_row_column():
+    ocean = Ocean()
+    battleship3 = Battleship()
+    ocean.place_ship_at(2, 3, battleship3, horizontal=True)
+    assert battleship3.get_starting_row() == 2
+    assert battleship3.get_starting_column() == 3
+    
 def test_check_open_position():
     ocean = Ocean()
     

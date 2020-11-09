@@ -53,6 +53,8 @@ class Ocean:
         
     def place_ship_at(self, row, column, ship, horizontal):
         ship.set_horizontal_bool(horizontal)
+        ship.set_starting_row(row)
+        ship.set_starting_column(column)
         resulting_closed_positions = set()
         for i in range(ship.get_length()):
             if horizontal:
