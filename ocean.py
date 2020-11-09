@@ -52,6 +52,7 @@ class Ocean:
                 self.open_ocean_positions.remove(position)
         
     def place_ship_at(self, row, column, ship, horizontal):
+        ship.set_horizontal_bool(horizontal)
         resulting_closed_positions = set()
         for i in range(ship.get_length()):
             if horizontal:
@@ -71,5 +72,10 @@ class Ocean:
         return self.get_space_at(row, column).get_ship_type()
         
     def is_open_position(self, position):
-        return (position in self.open_ocean_positions)
+        return (position in self.open_ocean_positions) 
+       
+    def is_open_sea(self, row, column):
+        position = (row, column)
+        return self.is_open_position(position)
+    
         

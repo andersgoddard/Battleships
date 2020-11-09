@@ -6,6 +6,7 @@ class Ship(Space):
     def __init__(self):
         self.positions = []
         self.hits = []
+        self.horizontal = None
 
     def get_length(self):
         return self._length
@@ -22,6 +23,12 @@ class Ship(Space):
         
     def get_ship_positions(self):
         return self.positions
+        
+    def is_horizontal(self):
+        return self.horizontal
+        
+    def set_horizontal_bool(self, horizontal):
+        self.horizontal = horizontal
 
 class Battleship(Ship):
     def __init__(self):
