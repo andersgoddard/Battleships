@@ -28,13 +28,14 @@ def test_hit_ship_in_ocean():
     battleship = Battleship()
     assert ocean.get_char_at(3, 4) == '~'
     ocean.place_ship_at(2, 3, battleship, horizontal=True)
-    ocean.take_shot(2, 3)
+    ocean.take_shot(2, 3) # hits
     assert battleship.get_hits() == [(2, 3)]
-    ocean.take_shot(2, 4)
+    ocean.take_shot(2, 4) # hits
     assert battleship.get_hits() == [(2, 3), (2, 4)]
-    ocean.take_shot(3, 4)
+    ocean.take_shot(3, 4) # misses
     assert battleship.get_hits() == [(2, 3), (2, 4)]
     assert ocean.get_char_at(3, 4) == '.'
+    assert ocean.get_char_at(2, 4) == 'X'
         
 def test_set_space_at():
     ocean = Ocean()
@@ -44,20 +45,36 @@ def test_set_space_at():
 def test_create_ships():
     battleship1 = Battleship()
     assert battleship1.get_length() == 4
-    assert battleship1.get_char_representation() == 'B'
+    assert battleship1.sunk_char_representation == 'B'
     
     cruiser1 = Cruiser()
     assert cruiser1.get_length() == 3
-    assert cruiser1.get_char_representation() == 'C'
+    assert cruiser1.sunk_char_representation == 'C'
     
     destroyer1 = Destroyer()
     assert destroyer1.get_length() == 2
-    assert destroyer1.get_char_representation() == 'D'
+    assert destroyer1.sunk_char_representation == 'D'
     
     submarine1 = Submarine()
     assert submarine1.get_length() == 1
-    assert submarine1.get_char_representation() == 'S'
-   
+    assert submarine1.sunk_char_representation == 'S'
+
+def test_sink_ships():
+    ocean = Ocean()
+    ocean.place_ship_at(4, 4, Cruiser(), horizontal=False)
+    assert ocean.get_char_at(4, 4) == '~'
+    assert ocean.get_char_at(5, 4) == '~'
+    assert ocean.get_char_at(6, 4) == '~'    
+    ocean.take_shot(4, 4)
+    assert ocean.get_char_at(4, 4) == 'X'
+    ocean.take_shot(5, 4)
+    assert ocean.get_char_at(4, 4) == 'X'
+    assert ocean.get_char_at(5, 4) == 'X'
+    ocean.take_shot(6, 4)
+    assert ocean.get_char_at(4, 4) == 'C'
+    assert ocean.get_char_at(5, 4) == 'C'
+    assert ocean.get_char_at(5, 4) == 'C'
+    
 def test_place_individual_ships():
     ocean = Ocean()
     battleship2 = Battleship()

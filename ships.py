@@ -4,12 +4,14 @@ from space import *
 
 class Ship(Space):   
     def __init__(self):
+        super().__init__()
         self.is_empty_space = False
         self.positions = []
         self.hits = []
         self.horizontal = None
         self.starting_row = -1
         self.starting_column = -1
+        self.is_hit = False
 
     def get_length(self):
         return self._length
@@ -45,36 +47,41 @@ class Ship(Space):
     def get_starting_column(self):
         return self.starting_column
         
-    def check_shot(self, position):
-        self.hits.append(position)
-        
     def get_hits(self):
         return self.hits
+        
+    def check_shot(self, position):
+        self.is_checked = True
+        self.hits.append(position)
+        if len(self.get_hits()) == self.get_length():
+            self.char_representation = self.sunk_char_representation
+        else:
+            self.char_representation = 'X'
 
 class Battleship(Ship):
     def __init__(self):
         super().__init__()
         self._length = 4
-        self.char_representation = 'B'
+        self.sunk_char_representation = 'B'
         self.ship_type = "Battleship"        
         
 class Cruiser(Ship):
     def __init__(self):
         super().__init__()
         self._length = 3
-        self.char_representation = 'C'
+        self.sunk_char_representation = 'C'
         self.ship_type = "Cruiser"
         
 class Destroyer(Ship):
     def __init__(self):
         super().__init__()
         self._length = 2
-        self.char_representation = 'D'
+        self.sunk_char_representation = 'D'
         self.ship_type = "Destroyer"
 
 class Submarine(Ship):
     def __init__(self):
         super().__init__()
         self._length = 1
-        self.char_representation = 'S'
+        self.sunk_char_representation = 'S'
         self.ship_type = "Submarine"
