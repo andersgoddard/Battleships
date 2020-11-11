@@ -92,7 +92,7 @@ class Ocean:
                     return_positions.remove(position)
         else:
             for position in return_positions:
-                if (position[0] + ship.get_length()-1) >= self._width:
+                if (position[0] + ship.get_length()-1) >= self._height:
                     return_positions.remove(position)
                 
         return return_positions
