@@ -113,3 +113,9 @@ class Ocean:
             column = open_positions[0][1]
             self.place_ship_at(row, column, ship, horizontal=True)
             fleet.add_ship(ship)
+            
+    def display_ocean(self):
+        for i in range(ocean.get_width()):
+            for j in range(ocean.get_height()):
+              print(ocean.get_char_at(i, j), end = " ")
+            print('\n')

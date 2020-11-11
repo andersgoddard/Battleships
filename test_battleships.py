@@ -152,13 +152,16 @@ def test_sink_ships():
     assert ocean.get_char_at(6, 4) == '~'    
     ocean.take_shot(4, 4)
     assert ocean.get_char_at(4, 4) == 'X'
+    assert ocean.get_char_at(5, 4) == '~'
+    assert ocean.get_char_at(6, 4) == '~'    
     ocean.take_shot(5, 4)
     assert ocean.get_char_at(4, 4) == 'X'
     assert ocean.get_char_at(5, 4) == 'X'
+    assert ocean.get_char_at(6, 4) == '~'    
     ocean.take_shot(6, 4)
     assert ocean.get_char_at(4, 4) == 'C'
     assert ocean.get_char_at(5, 4) == 'C'
-    assert ocean.get_char_at(5, 4) == 'C'
+    assert ocean.get_char_at(6, 4) == 'C'
     
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
