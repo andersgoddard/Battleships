@@ -26,17 +26,21 @@ def test_create_ships():
     assert battleship.get_length() == 4
     assert battleship.sunk_char_representation == 'B'
     
-    cruiser1 = Cruiser()
+    cruiser = Cruiser()
     assert cruiser.get_length() == 3
     assert cruiser.sunk_char_representation == 'C'
     
-    destroyer1 = Destroyer()
+    destroyer = Destroyer()
     assert destroyer.get_length() == 2
     assert destroyer.sunk_char_representation == 'D'
     
-    submarine1 = Submarine()
+    submarine = Submarine()
     assert submarine.get_length() == 1
     assert submarine.sunk_char_representation == 'S'    
+
+def test_get_open_positions():
+    ocean = Ocean()
+    assert ((9, 9) in ocean.get_open_positions()) == True
     
 def test_place_individual_ships():
     ocean = Ocean()

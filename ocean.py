@@ -80,5 +80,8 @@ class Ocean:
     def is_open_sea(self, row, column):
         position = (row, column)
         return self.is_open_position(position)
+        
+    def get_open_positions(self):
+        return self.open_ocean_positions
     
         
