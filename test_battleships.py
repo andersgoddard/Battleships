@@ -3,6 +3,7 @@ from battleships import *
 from ocean import *
 from space import *
 from ships import *
+from fleet import *
 
 def test_create_ocean():
     ocean = Ocean()
@@ -105,6 +106,30 @@ def test_get_starting_row_column():
     assert battleship.get_starting_row() == 2
     assert battleship.get_starting_column() == 3
     
+def test_create_fleet():
+    fleet = Fleet()
+    assert fleet.get_capacity() == 10
+    assert fleet.get_current_size() == 0    
+    battleship = Battleship()
+    fleet.add_ship(battleship)
+    assert fleet.get_current_size() == 1    
+
+def test_build_fleet():
+    ocean = Ocean()
+    fleet = Fleet()
+    ocean.build_fleet(fleet)
+        
+    assert fleet.get_fleet()[0].get_ship_positions() == [(0,0),(0,1),(0,2),(0,3)]
+    assert fleet.get_fleet()[1].get_ship_positions() == [(2,0),(2,1),(2,2)]
+    assert fleet.get_fleet()[2].get_ship_positions() == [(4,0),(4,1),(4,2)]
+    assert fleet.get_fleet()[3].get_ship_positions() == [(6,0),(6,1)]
+    assert fleet.get_fleet()[4].get_ship_positions() == [(8,0),(8,1)]
+    assert fleet.get_fleet()[5].get_ship_positions() == [(6,3),(6,4)]
+    assert fleet.get_fleet()[6].get_ship_positions() == [(8,3)]
+    assert fleet.get_fleet()[7].get_ship_positions() == [(2,4)]
+    assert fleet.get_fleet()[8].get_ship_positions() == [(4,4)]
+    assert fleet.get_fleet()[9].get_ship_positions() == [(0,5)]
+
 def test_hit_ship_in_ocean():
     ocean = Ocean()
     battleship = Battleship()

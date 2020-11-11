@@ -1,4 +1,5 @@
 from space import *
+from ships import *
 
 class Ocean:
     def create_empty_ocean(self):
@@ -97,3 +98,18 @@ class Ocean:
                 
         return return_positions
     
+    def build_fleet(self, fleet):
+        for i in range(fleet.get_capacity()):
+            if i < 1:
+                ship = Battleship()
+            elif i < 3:
+                ship = Cruiser()
+            elif i < 6:
+                ship = Destroyer()
+            else:
+                ship = Submarine()
+            open_positions = self.get_open_positions(ship, horizontal=True)
+            row = open_positions[0][0]
+            column = open_positions[0][1]
+            self.place_ship_at(row, column, ship, horizontal=True)
+            fleet.add_ship(ship)
