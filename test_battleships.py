@@ -40,7 +40,22 @@ def test_create_ships():
 
 def test_get_open_positions():
     ocean = Ocean()
-    assert ((9, 9) in ocean.get_open_positions()) == True
+    assert ((6, 7) in ocean.get_open_positions()) == True # won't be open to a horizontal battleship
+    assert ((7, 5) in ocean.get_open_positions()) == True # won't be open to a vertical battleship
+    
+    battleship = Battleship()
+    assert((6, 7) in ocean.get_open_positions(battleship, horizontal=True)) == False
+    assert((7, 5) in ocean.get_open_positions(battleship, horizontal=False)) == False
+    assert((9, 3) in ocean.get_open_positions(battleship, horizontal=True)) == True
+    assert((3, 9) in ocean.get_open_positions(battleship, horizontal=False)) == True
+    
+    destroyer = Destroyer()
+    assert((6, 7) in ocean.get_open_positions(destroyer, horizontal=True)) == True
+    assert((7, 5) in ocean.get_open_positions(destroyer, horizontal=False)) == True
+    assert((9, 9) in ocean.get_open_positions(destroyer, horizontal=False)) == False
+    
+    submarine = Submarine()
+    assert((9, 9) in ocean.get_open_positions(submarine, horizontal=True)) == True
     
 def test_place_individual_ships():
     ocean = Ocean()

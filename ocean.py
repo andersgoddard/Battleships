@@ -81,7 +81,19 @@ class Ocean:
         position = (row, column)
         return self.is_open_position(position)
         
-    def get_open_positions(self):
-        return self.open_ocean_positions
-    
+    def get_open_positions(self, ship=None, horizontal=-1):
+        if horizontal == -1:
+            return self.open_ocean_positions
         
+        return_positions = self.open_ocean_positions[:]
+        if horizontal:
+            for position in return_positions:
+                if (position[1] + ship.get_length()-1) >= self._width:
+                    return_positions.remove(position)
+        else:
+            for position in return_positions:
+                if (position[0] + ship.get_length()-1) >= self._width:
+                    return_positions.remove(position)
+                
+        return return_positions
+    
