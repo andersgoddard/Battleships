@@ -49,4 +49,10 @@ class Position(Space):
     def get_ship(self):
         return self.ship
         
+    def get_char_representation(self):
+        if self.ship.is_sunk():
+            return self.ship.get_char_representation()
+        else:
+            return super().get_char_representation()
+        
     

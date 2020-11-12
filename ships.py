@@ -3,7 +3,7 @@ from fleet import *
 
 # We represent a ship by means of tuples(row, column, horizontal, length, hits)
 
-class Ship(Space):   
+class Ship():   
     def __init__(self):
         super().__init__()
         self.is_empty_space = False
@@ -63,11 +63,12 @@ class Ship(Space):
     def check_shot(self, position):
         position.set_is_checked(True)
         self.hits.append(position.get_position())
-        if len(self.get_hits()) >= self.get_length():
-            self.char_representation = self.sunk_char_representation
+            
+    def is_sunk(self):
+        return len(self.get_hits()) >= self.get_length()
 
     def get_char_representation(self):
-        return self.char_representation
+        return self.sunk_char_representation
 
 class Battleship(Ship):
     def __init__(self):
