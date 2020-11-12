@@ -1,4 +1,5 @@
-from space import *  
+from space import *
+from fleet import *
 
 # We represent a ship by means of tuples(row, column, horizontal, length, hits)
 
@@ -7,6 +8,7 @@ class Ship(Space):
         super().__init__()
         self.is_empty_space = False
         self.positions = []
+        self.position_tuples = []
         self.hits = []
         self.horizontal = None
         self.starting_row = -1
@@ -23,11 +25,19 @@ class Ship(Space):
         return self.ship_type
         
     def add_position(self, row, column):
-        position = (row, column)
+        position = Position(row, column, self)
+        self.position_tuples.append(position.get_position())
         self.positions.append(position)
         
-    def get_ship_positions(self):
+    def get_position(self, row, column):
+        position_index = self.position_tuples.index((row, column))
+        return self.positions[position_index]
+        
+    def get_positions(self):
         return self.positions
+        
+    def get_ship_positions(self):
+        return self.position_tuples
 
     def set_horizontal_bool(self, horizontal):
         self.horizontal = horizontal
@@ -51,12 +61,13 @@ class Ship(Space):
         return self.hits
         
     def check_shot(self, position):
-        self.is_checked = True
-        self.hits.append(position)
-        if len(self.get_hits()) == self.get_length():
+        position.set_is_checked(True)
+        self.hits.append(position.get_position())
+        if len(self.get_hits()) >= self.get_length():
             self.char_representation = self.sunk_char_representation
-        else:
-            self.char_representation = 'X'
+
+    def get_char_representation(self):
+        return self.char_representation
 
 class Battleship(Ship):
     def __init__(self):

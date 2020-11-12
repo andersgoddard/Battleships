@@ -1,13 +1,14 @@
 from space import *
 from ships import *
+from fleet import *
 
 class Ocean:
     def create_empty_ocean(self):
-        for i in range(self._width):
+        for column in range(self._width):
             self.ocean.append([])
-            for j in range(self._height):
-                self.ocean[i].append(Space()) 
-                position = (j, i)
+            for row in range(self._height):
+                self.ocean[column].append(Space()) 
+                position = (row, column)
                 self.open_ocean_positions.append(position)
    
     def __init__(self):
@@ -16,6 +17,12 @@ class Ocean:
         self.ocean = []
         self.open_ocean_positions = []
         self.create_empty_ocean()
+        
+    def get_width(self):
+        return self._width
+        
+    def get_height(self):
+        return self._height
         
     def set_space_at(self, row, column, space):
         self.ocean[row][column] = space
@@ -27,8 +34,12 @@ class Ocean:
         return self.get_space_at(row, column).get_char_representation()
         
     def take_shot(self, row, column):
-        position = (row, column)
-        self.get_space_at(row, column).check_shot(position)
+        position = self.get_space_at(row, column)
+
+        if position.get_type() == "Space":
+            position.check_shot(position)
+        elif position.get_type() == "Position":
+            position.get_ship().check_shot(position)
         
     def get_surrounding_positions(self, position):
         surrounding_positions = set()
@@ -61,12 +72,12 @@ class Ocean:
         for i in range(ship.get_length()):
             if horizontal:
                 position = (row, column+i)
-                self.set_space_at(row, column+i, ship)
-                ship.add_position(row, column+i)
+                ship.add_position(row, column+i)                
+                self.set_space_at(row, column+i, ship.get_position(row, column+i))
             else:
                 position = (row+i, column)
-                self.set_space_at(row+i, column, ship)
-                ship.add_position(row+i, column)
+                ship.add_position(row+i, column)                
+                self.set_space_at(row+i, column, ship.get_position(row+i, column))
             resulting_closed_positions.add(position)
             resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
             

@@ -38,6 +38,11 @@ def test_create_ships():
     submarine = Submarine()
     assert submarine.get_length() == 1
     assert submarine.sunk_char_representation == 'S'    
+    
+def test_get_char_at_position():
+    ship = Battleship()
+    position = Position(0,0, ship)
+    position.get_char_representation = '~'
 
 def test_get_open_positions():
     ocean = Ocean()
