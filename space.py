@@ -18,9 +18,6 @@ class Space:
         self.is_checked = True
         self.set_char_representation()
         
-    def is_open_sea(self):
-        return True
-        
     def get_type(self):
         return "Space"
         

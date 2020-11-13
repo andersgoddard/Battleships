@@ -122,7 +122,7 @@ def test_create_fleet():
 def test_build_fleet():
     ocean = Ocean()
     fleet = Fleet()
-    ocean.build_fleet(fleet)
+    ocean.build_basic_fleet(fleet)
         
     assert fleet.get_fleet()[0].get_ship_positions() == [(0,0),(0,1),(0,2),(0,3)]
     assert fleet.get_fleet()[1].get_ship_positions() == [(2,0),(2,1),(2,2)]

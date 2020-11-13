@@ -2,15 +2,7 @@ from space import *
 from ships import *
 from fleet import *
 
-class Ocean:
-    def create_empty_ocean(self):
-        for column in range(self._width):
-            self.ocean.append([])
-            for row in range(self._height):
-                self.ocean[column].append(Space()) 
-                position = (row, column)
-                self.open_ocean_positions.append(position)
-   
+class Ocean:   
     def __init__(self):
         self._width = 10
         self._height = 10
@@ -18,12 +10,33 @@ class Ocean:
         self.open_ocean_positions = []
         self.create_empty_ocean()
         
+    def create_empty_ocean(self):
+        for column in range(self._width):
+            self.ocean.append([])
+            for row in range(self._height):
+                self.ocean[column].append(Space()) 
+                position = (row, column)
+                self.open_ocean_positions.append(position)    
+        
+    def display_ocean(self):
+        for i in range(ocean.get_width()):
+            for j in range(ocean.get_height()):
+              print(ocean.get_char_at(i, j), end = " ")
+            print('\n')
+        
     def get_width(self):
         return self._width
         
     def get_height(self):
         return self._height
-        
+    
+    def is_open_position(self, position):
+        return (position in self.open_ocean_positions) 
+       
+    def is_open_sea(self, row, column):
+        position = (row, column)
+        return self.is_open_position(position)
+    
     def set_space_at(self, row, column, space):
         self.ocean[row][column] = space
         
@@ -33,13 +46,8 @@ class Ocean:
     def get_char_at(self, row, column):
         return self.get_space_at(row, column).get_char_representation()
         
-    def take_shot(self, row, column):
-        position = self.get_space_at(row, column)
-
-        if position.get_type() == "Space":
-            position.check_shot(position)
-        elif position.get_type() == "Position":
-            position.get_ship().check_shot(position)
+    def get_type_at(self, row, column):
+        return self.get_space_at(row, column).get_ship_type()
         
     def get_surrounding_positions(self, position):
         surrounding_positions = set()
@@ -57,6 +65,14 @@ class Ocean:
         surrounding_positions.add((row+1, column+1))
         
         return surrounding_positions
+
+    def take_shot(self, row, column):
+        position = self.get_space_at(row, column)
+
+        if position.get_type() == "Space":
+            position.check_shot(position)
+        elif position.get_type() == "Position":
+            position.get_ship().check_shot(position)
         
     def remove_closed_positions(self, positions):
         for position in positions:
@@ -83,16 +99,6 @@ class Ocean:
             
         self.remove_closed_positions(list(resulting_closed_positions))
         
-    def get_type_at(self, row, column):
-        return self.get_space_at(row, column).get_ship_type()
-        
-    def is_open_position(self, position):
-        return (position in self.open_ocean_positions) 
-       
-    def is_open_sea(self, row, column):
-        position = (row, column)
-        return self.is_open_position(position)
-        
     def get_open_positions(self, ship=None, horizontal=-1):
         if horizontal == -1:
             return self.open_ocean_positions
@@ -109,7 +115,7 @@ class Ocean:
                 
         return return_positions
     
-    def build_fleet(self, fleet):
+    def build_basic_fleet(self, fleet):
         for i in range(fleet.get_capacity()):
             if i < 1:
                 ship = Battleship()
@@ -125,8 +131,22 @@ class Ocean:
             self.place_ship_at(row, column, ship, horizontal=True)
             fleet.add_ship(ship)
             
-    def display_ocean(self):
-        for i in range(ocean.get_width()):
-            for j in range(ocean.get_height()):
-              print(ocean.get_char_at(i, j), end = " ")
-            print('\n')
+    def build_random_fleet(self, fleet):
+        orientation_choices = [True, False]
+        for i in range(fleet.get_capacity()):
+            if i < 1:
+                ship = Battleship()
+            elif i < 3:
+                ship = Cruiser()
+            elif i < 6:
+                ship = Destroyer()
+            else:
+                ship = Submarine()
+            horizontal = random.choice(orientation_choices)
+            open_positions = self.get_open_positions(ship, horizontal)
+            open_position = random.choice(open_positions)
+            row = open_position[0]
+            column = open_position[1]
+            self.place_ship_at(row, column, ship, horizontal)
+            fleet.add_ship(ship)            
+                

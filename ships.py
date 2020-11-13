@@ -6,45 +6,19 @@ from fleet import *
 class Ship():   
     def __init__(self):
         super().__init__()
-        self.is_empty_space = False
         self.positions = []
         self.position_tuples = []
         self.hits = []
         self.horizontal = None
         self.starting_row = -1
         self.starting_column = -1
-        self.is_hit = False
 
     def get_length(self):
         return self._length
         
-    def is_open_sea(self):
-        return False
-        
     def get_ship_type(self):
         return self.ship_type
-        
-    def add_position(self, row, column):
-        position = Position(row, column, self)
-        self.position_tuples.append(position.get_position())
-        self.positions.append(position)
-        
-    def get_position(self, row, column):
-        position_index = self.position_tuples.index((row, column))
-        return self.positions[position_index]
-        
-    def get_positions(self):
-        return self.positions
-        
-    def get_ship_positions(self):
-        return self.position_tuples
 
-    def set_horizontal_bool(self, horizontal):
-        self.horizontal = horizontal
-        
-    def is_horizontal(self):
-        return self.horizontal
-        
     def set_starting_row(self, row):
         self.starting_row = row
         
@@ -56,10 +30,28 @@ class Ship():
         
     def get_starting_column(self):
         return self.starting_column
-        
+    
+    def get_ship_positions(self):
+        return self.position_tuples
+    
     def get_hits(self):
         return self.hits
+    
+    def add_position(self, row, column):
+        position = Position(row, column, self)
+        self.position_tuples.append(position.get_position())
+        self.positions.append(position)
         
+    def get_position(self, row, column):
+        position_index = self.position_tuples.index((row, column))
+        return self.positions[position_index]
+
+    def set_horizontal_bool(self, horizontal):
+        self.horizontal = horizontal
+        
+    def is_horizontal(self):
+        return self.horizontal
+               
     def check_shot(self, position):
         position.set_is_checked(True)
         self.hits.append(position.get_position())
