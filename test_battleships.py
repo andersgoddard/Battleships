@@ -141,11 +141,11 @@ def test_hit_ship_in_ocean():
     assert ocean.get_char_at(3, 4) == '~' # unchecked
     ocean.place_ship_at(2, 3, battleship, horizontal=True)
     ocean.take_shot(2, 3) # hits
-    assert battleship.get_hits() == [(2, 3)]
+    assert battleship.get_hits() == {(2, 3)}
     ocean.take_shot(2, 4) # hits
-    assert battleship.get_hits() == [(2, 3), (2, 4)]
+    assert battleship.get_hits() == {(2, 3), (2, 4)}
     ocean.take_shot(3, 4) # misses
-    assert battleship.get_hits() == [(2, 3), (2, 4)]
+    assert battleship.get_hits() == {(2, 3), (2, 4)}
     assert ocean.get_char_at(3, 4) == '.' # checked and missed
     assert ocean.get_char_at(2, 4) == 'X' # checked and hit
 

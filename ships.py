@@ -8,7 +8,7 @@ class Ship():
         super().__init__()
         self.positions = []
         self.position_tuples = []
-        self.hits = []
+        self.hits = set()
         self.horizontal = None
         self.starting_row = -1
         self.starting_column = -1
@@ -54,7 +54,7 @@ class Ship():
                
     def check_shot(self, position):
         position.set_is_checked(True)
-        self.hits.append(position.get_position())
+        self.hits.add(position.get_position())
             
     def is_sunk(self):
         return len(self.get_hits()) >= self.get_length()
