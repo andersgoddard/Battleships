@@ -61,6 +61,9 @@ class Ship():
 
     def get_char_representation(self):
         return self.sunk_char_representation
+        
+    def get_type(self):
+        return self.ship_type
 
 class Battleship(Ship):
     def __init__(self):

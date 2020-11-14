@@ -1,6 +1,7 @@
 from space import *
 from ships import *
 from fleet import *
+import random
 
 class Ocean:   
     def __init__(self):
@@ -17,7 +18,7 @@ class Ocean:
                 self.ocean[column].append(Space()) 
                 position = (row, column)
                 self.open_ocean_positions.append(position)    
-        
+                        
     def display_ocean(self):
         for i in range(ocean.get_width()):
             for j in range(ocean.get_height()):
@@ -78,7 +79,25 @@ class Ocean:
         for position in positions:
             if position in self.open_ocean_positions:
                 self.open_ocean_positions.remove(position)
+    
+    def get_open_positions(self, ship=None, horizontal=-1):
+    
+        if horizontal == -1:
+            return self.open_ocean_positions
+                
+        return_positions = self.open_ocean_positions[:]
+
+        if horizontal:
+            for position in self.open_ocean_positions:
+                if (position[1] + ship.get_length()) > self._width:
+                    return_positions.remove(position)
+        else:
+            for position in self.open_ocean_positions:
+                if (position[0] + ship.get_length()) > self._height:
+                    return_positions.remove(position)
         
+        return return_positions
+    
     def place_ship_at(self, row, column, ship, horizontal):
         ship.set_horizontal_bool(horizontal)
         ship.set_starting_row(row)
@@ -98,22 +117,6 @@ class Ocean:
             resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
             
         self.remove_closed_positions(list(resulting_closed_positions))
-        
-    def get_open_positions(self, ship=None, horizontal=-1):
-        if horizontal == -1:
-            return self.open_ocean_positions
-        
-        return_positions = self.open_ocean_positions[:]
-        if horizontal:
-            for position in return_positions:
-                if (position[1] + ship.get_length()-1) >= self._width:
-                    return_positions.remove(position)
-        else:
-            for position in return_positions:
-                if (position[0] + ship.get_length()-1) >= self._height:
-                    return_positions.remove(position)
-                
-        return return_positions
     
     def build_basic_fleet(self, fleet):
         for i in range(fleet.get_capacity()):

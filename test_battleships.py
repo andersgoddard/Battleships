@@ -168,6 +168,11 @@ def test_sink_ships():
     assert ocean.get_char_at(5, 4) == 'C'
     assert ocean.get_char_at(6, 4) == 'C'
     
+def test_game_representations():
+    ocean = Ocean()
+    fleet = Fleet()
+    ocean.build_random_fleet(fleet)
+    
 # def test_is_sunk():
     # s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     # assert is_sunk(s) == True
