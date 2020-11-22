@@ -1,13 +1,27 @@
+from ocean import *
+from ships import *
+from fleet import *
+
 #see the readme.md file for description and data 
 
 
 def is_sunk(ship):
     #remove pass and add your implementation
-    pass
+    return ship[3] == len(ship[4])
 
 def ship_type(ship):
     #remove pass and add your implementation
-    pass
+    length = ship[3]
+    if length == 4:
+        return Battleship().get_type()
+    elif length == 3:
+        return Cruiser().get_type()
+    elif length == 2:
+        return Destroyer().get_type()
+    elif length == 1:
+        return Submarine().get_type()
+    else:
+        return ""
 
 def is_open_sea(row, column, fleet):
     #remove pass and add your implementation

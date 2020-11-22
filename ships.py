@@ -64,6 +64,10 @@ class Ship():
         
     def get_type(self):
         return self.ship_type
+        
+    def get_game_representation(self):
+        game_representation = (self.starting_row, self.starting_column, self.horizontal, self._length, self.hits)
+        return game_representation
 
 class Battleship(Ship):
     def __init__(self):
