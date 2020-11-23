@@ -256,7 +256,7 @@ def test_are_unsunk_ships_left():
     #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
 
     fleet3 = [(2, 3, True, 4, {2, 3})]
-    are_unsunk_ships_left(fleet3) == True
+    assert are_unsunk_ships_left(fleet3) == True
     
     # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
     
