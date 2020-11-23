@@ -212,51 +212,51 @@ def test_ship_type():
     s5 = (0, 0, True, 10, {(0,0)})
     assert ship_type(s5) == ""
   
-# def test_is_open_sea():
-    # #add at least one test for open_sea by the deadline of session 7 assignment
+def test_is_open_sea():
+    #add at least one test for open_sea by the deadline of session 7 assignment
 
-#    fleet1 = []
-#    assert is_open_sea(2, 3, fleet1) == True
+    fleet1 = []
+    assert is_open_sea(2, 3, fleet1) == True
     
     # #provide at least five tests in total for open_sea by the project submission deadline
  
-# def test_ok_to_place_ship_at():
-    # #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
+def test_ok_to_place_ship_at():
+    #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
 
-#    fleet1 = []
-#    assert ok_to_place_ship_at(2, 3, True, 4, fleet1) == True
+    fleet1 = []
+    assert ok_to_place_ship_at(2, 3, True, 4, fleet1) == True
         
     # #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline
 
-# def test_place_ship_at():
-    # #add at least one test for place_ship_at by the deadline of session 7 assignment  
+def test_place_ship_at():
+    #add at least one test for place_ship_at by the deadline of session 7 assignment  
 
-#    fleet1 = []
-#    assert test_place_ship_at(2, 3, True, 4, fleet1) = [(2, 3, True, 4, {})]
+    fleet1 = []
+    assert place_ship_at(2, 3, True, 4, fleet1) == [(2, 3, True, 4, {})]
     
     # #provide at least five tests in total for place_ship_at by the project submission deadline
 
-# def test_check_if_hits():
+def test_check_if_hits():
     # #add at least one test for check_if_hits by the deadline of session 7 assignment
     
-#    fleet2 = [(2, 3, True, 4, {})]
-#    assert check_if_hits(2, 3, fleet2) == True
+    fleet2 = [(2, 3, True, 4, {})]
+    assert check_if_hits(2, 3, fleet2) == True
     
     # #provide at least five tests in total for check_if_hits by the project submission deadline
 
-# def test_hit():
-    # #add at least one test for hit by the deadline of session 7 assignment
+def test_hit():
+    #add at least one test for hit by the deadline of session 7 assignment
 
-#    fleet2 = [(2, 3, True, 4, {})]
-#    assert hit(2, 3, fleet2) == ([(2, 3, True, 4, {2, 3})], (2, 3, True, 4, {2, 3}))
+    fleet2 = [(2, 3, True, 4, {})]
+    assert hit(2, 3, fleet2) == ([(2, 3, True, 4, {2, 3})], (2, 3, True, 4, {2, 3}))
         
     # #provide at least five tests in total for hit by the project submission deadline
 
-# def test_are_unsunk_ships_left():
-    # #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
+def test_are_unsunk_ships_left():
+    #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
 
-#    fleet3 = [(2, 3, True, 4, {2, 3})]
-#    are_unsunk_ships_left(fleet3) == True
+    fleet3 = [(2, 3, True, 4, {2, 3})]
+    are_unsunk_ships_left(fleet3) == True
     
     # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
     
