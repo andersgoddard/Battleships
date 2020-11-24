@@ -74,6 +74,21 @@ class Ocean:
             position.check_shot(position)
         elif position.get_type() == "Position":
             position.get_ship().check_shot(position)
+            
+    def get_closed_positions(self, row, column, ship, horizontal):
+        resulting_closed_positions = set()
+        for i in range(ship.get_length()):
+            if horizontal:
+                position = (row, column+i)
+                ship.add_position(row, column+i)                
+                self.set_space_at(row, column+i, ship.get_position(row, column+i))
+            else:
+                position = (row+i, column)
+                ship.add_position(row+i, column)                
+                self.set_space_at(row+i, column, ship.get_position(row+i, column))
+            resulting_closed_positions.add(position)
+            resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
+        return resulting_closed_positions
         
     def remove_closed_positions(self, positions):
         for position in positions:
@@ -103,19 +118,7 @@ class Ocean:
         ship.set_starting_row(row)
         ship.set_starting_column(column)
         
-        resulting_closed_positions = set()
-        for i in range(ship.get_length()):
-            if horizontal:
-                position = (row, column+i)
-                ship.add_position(row, column+i)                
-                self.set_space_at(row, column+i, ship.get_position(row, column+i))
-            else:
-                position = (row+i, column)
-                ship.add_position(row+i, column)                
-                self.set_space_at(row+i, column, ship.get_position(row+i, column))
-            resulting_closed_positions.add(position)
-            resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
-            
+        resulting_closed_positions = self.get_closed_positions(row, column, ship, horizontal)                    
         self.remove_closed_positions(list(resulting_closed_positions))
     
     def build_basic_fleet(self, fleet):

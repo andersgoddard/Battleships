@@ -211,12 +211,22 @@ def test_ship_type():
     
     s5 = (0, 0, True, 10, {(0,0)})
     assert ship_type(s5) == ""
+    
+def test_set_hits():
+    ship = Battleship()
+    assert ship.get_hits() == set()
+    ship.set_hits({(2, 3)})
+    assert ship.get_hits() == {(2, 3)}
   
-# def test_is_open_sea():
-    # #add at least one test for open_sea by the deadline of session 7 assignment
+def test_is_open_sea():
+#    add at least one test for open_sea by the deadline of session 7 assignment
 
-    # fleet1 = []
-    # assert is_open_sea(2, 3, fleet1) == True
+    fleet1 = []
+    assert is_open_sea(2, 3, fleet1) == True
+    
+    fleet2 = [(2, 3, True, 4, {2, 3})]
+    assert is_open_sea(2, 3, fleet2) == False
+    assert is_open_sea(8, 8, fleet2) == True
     
     # # #provide at least five tests in total for open_sea by the project submission deadline
  

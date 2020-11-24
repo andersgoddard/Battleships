@@ -24,8 +24,24 @@ def ship_type(ship):
         return ""
 
 def is_open_sea(row, column, fleet):
-    #remove pass and add your implementation
-    pass
+    ocean = Ocean()
+    check_position = (row, column)
+    closed_positions = set()
+    for ship in fleet:
+        if ship[3] == 4:
+            ship_object = Battleship()
+        elif ship[3] == 3:
+            ship_object = Cruiser()
+        elif ship[3] == 2:
+            ship_object = Destroyer()            
+        elif ship[3] == 1:
+            ship_object = Submarine()
+        ship_object.set_starting_row(ship[0])
+        ship_object.set_starting_column(ship[1])
+        ship_object.set_horizontal_bool(ship[2])
+        ship_object.set_hits(ship[4])
+        closed_positions.update(ocean.get_closed_positions(ship_object.get_starting_row(), ship_object.get_starting_column(), ship_object, ship_object.get_horizontal_bool()))
+    return check_position not in closed_positions
 
 def ok_to_place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation

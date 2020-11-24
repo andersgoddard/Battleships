@@ -33,6 +33,9 @@ class Ship():
     
     def get_ship_positions(self):
         return self.position_tuples
+
+    def set_hits(self, hits):
+        self.hits = hits
     
     def get_hits(self):
         return self.hits
@@ -49,6 +52,9 @@ class Ship():
     def set_horizontal_bool(self, horizontal):
         self.horizontal = horizontal
         
+    def get_horizontal_bool(self):
+        return self.horizontal
+                
     def is_horizontal(self):
         return self.horizontal
                
