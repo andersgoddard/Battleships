@@ -50,7 +50,6 @@ def is_open_sea(row, column, fleet):
 
 def ok_to_place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation
-    ocean = Ocean()
     ok_to_place = True
     
     for i in range(length):       
@@ -75,7 +74,7 @@ def place_ship_at(row, column, horizontal, length, fleet):
 
 def randomly_place_all_ships():
     #remove pass and add your implementation
-    pass
+    pass  
 
 def check_if_hits(row, column, fleet):
     #remove pass and add your implementation
