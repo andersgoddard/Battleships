@@ -245,13 +245,31 @@ def test_ok_to_place_ship_at():
     assert ok_to_place_ship_at(8, 8, True, 4, fleet2) == False
     assert ok_to_place_ship_at(8, 8, False, 2, fleet2) == True
 
-# def test_place_ship_at():
-    # #add at least one test for place_ship_at by the deadline of session 7 assignment  
+def test_place_ship_at():
+    #add at least one test for place_ship_at by the deadline of session 7 assignment  
 
-    # fleet1 = []
-    # assert place_ship_at(2, 3, True, 4, fleet1) == [(2, 3, True, 4, {})]
+    fleet_v_1 = []
+    ship1 = (2, 3, True, 4, {})
+    fleet_v_2 = place_ship_at(2, 3, True, 4, fleet_v_1)
+    assert fleet_v_2 == [ship1]
     
-    # # #provide at least five tests in total for place_ship_at by the project submission deadline
+    # #provide at least five tests in total for place_ship_at by the project submission deadline
+
+    ship2 = (8, 8, False, 2, {})
+    fleet_v_3 = place_ship_at(8, 8, False, 2, fleet_v_2)
+    assert fleet_v_3 == [ship1, ship2]
+    
+    ship3 = (5, 5, False, 2, {})
+    fleet_v_4 = place_ship_at(5, 5, False, 2, fleet_v_3)
+    assert fleet_v_4 == [ship1, ship2, ship3]
+    
+    ship4 = (8, 0, True, 3, {})
+    fleet_v_5 = place_ship_at(8, 0, True, 3, fleet_v_4)
+    assert fleet_v_5 == [ship1, ship2, ship3, ship4]
+
+    ship5 = (0, 9, False, 3, {})
+    fleet_v_6 = place_ship_at(0, 9, False, 3, fleet_v_5)
+    assert fleet_v_6 == [ship1, ship2, ship3, ship4, ship5]
 
 # def test_check_if_hits():
     # # #add at least one test for check_if_hits by the deadline of session 7 assignment

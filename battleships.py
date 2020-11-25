@@ -68,7 +68,10 @@ def ok_to_place_ship_at(row, column, horizontal, length, fleet):
     
 def place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation
-    pass
+    new_fleet = fleet
+    new_ship = (row, column, horizontal, length, {})
+    new_fleet.append(new_ship)
+    return new_fleet
 
 def randomly_place_all_ships():
     #remove pass and add your implementation
