@@ -23,30 +23,49 @@ def ship_type(ship):
     else:
         return ""
 
+def create_ship_object(row, column, horizontal, length, hits):
+    if length == 4:
+        ship_object = Battleship()
+    elif length == 3:
+        ship_object = Cruiser()
+    elif length == 2:
+        ship_object = Destroyer()            
+    elif length == 1:
+        ship_object = Submarine()
+
+    ship_object.set_starting_row(row)
+    ship_object.set_starting_column(column)
+    ship_object.set_horizontal_bool(horizontal)
+    ship_object.set_hits(hits)
+    return ship_object
+
 def is_open_sea(row, column, fleet):
     ocean = Ocean()
     check_position = (row, column)
     closed_positions = set()
     for ship in fleet:
-        if ship[3] == 4:
-            ship_object = Battleship()
-        elif ship[3] == 3:
-            ship_object = Cruiser()
-        elif ship[3] == 2:
-            ship_object = Destroyer()            
-        elif ship[3] == 1:
-            ship_object = Submarine()
-        ship_object.set_starting_row(ship[0])
-        ship_object.set_starting_column(ship[1])
-        ship_object.set_horizontal_bool(ship[2])
-        ship_object.set_hits(ship[4])
+        ship_object = create_ship_object(ship[0], ship[1], ship[2], ship[3], ship[4])
         closed_positions.update(ocean.get_closed_positions(ship_object.get_starting_row(), ship_object.get_starting_column(), ship_object, ship_object.get_horizontal_bool()))
     return check_position not in closed_positions
 
 def ok_to_place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation
-    pass
-
+    ocean = Ocean()
+    ok_to_place = True
+    
+    for i in range(length):       
+        if not ok_to_place:
+            break
+            
+        if (horizontal and row+length > 10) or (not horizontal and column+length > 10):
+            ok_to_place = False
+        elif horizontal:
+            ok_to_place = is_open_sea(row+i, column, fleet)
+        else:
+            ok_to_place = is_open_sea(row, column+i, fleet)
+                
+    return ok_to_place
+    
 def place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation
     pass

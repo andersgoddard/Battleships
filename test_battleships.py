@@ -230,13 +230,20 @@ def test_is_open_sea():
     
     # # #provide at least five tests in total for open_sea by the project submission deadline
  
-# def test_ok_to_place_ship_at():
-    # #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
+def test_ok_to_place_ship_at():
+    #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
 
-    # fleet1 = []
-    # assert ok_to_place_ship_at(2, 3, True, 4, fleet1) == True
+    fleet1 = []
+    assert ok_to_place_ship_at(2, 3, True, 4, fleet1) == True
         
-    # # #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline
+    # #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline
+    
+    fleet2 = [(2, 3, True, 4, {2, 3})]
+    assert ok_to_place_ship_at(2, 3, True, 4, fleet2) == False
+    assert ok_to_place_ship_at(5, 5, False, 2, fleet2) == True
+    fleet2 = [(2, 3, True, 4, {2, 3}),(5, 5, False, 2, {})]
+    assert ok_to_place_ship_at(8, 8, True, 4, fleet2) == False
+    assert ok_to_place_ship_at(8, 8, False, 2, fleet2) == True
 
 # def test_place_ship_at():
     # #add at least one test for place_ship_at by the deadline of session 7 assignment  
