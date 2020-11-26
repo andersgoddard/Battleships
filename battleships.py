@@ -68,7 +68,7 @@ def ok_to_place_ship_at(row, column, horizontal, length, fleet):
 def place_ship_at(row, column, horizontal, length, fleet):
     #remove pass and add your implementation
     new_fleet = fleet
-    new_ship = (row, column, horizontal, length, {})
+    new_ship = (row, column, horizontal, length, set())
     new_fleet.append(new_ship)
     return new_fleet
 
@@ -94,7 +94,25 @@ def check_if_hits(row, column, fleet):
 
 def hit(row, column, fleet):
     #remove pass and add your implementation
-    pass
+    position = (row, column)
+    ocean = Ocean()
+
+    hit_ship = ()
+    return_fleet = []
+    
+    for ship in fleet:
+        ship_object = create_ship_object(ship[0], ship[1], ship[2], ship[3], ship[4])
+        ocean.place_ship_at(ship[0], ship[1], ship_object, ship_object.get_horizontal_bool())
+        if position in ship_object.get_ship_positions():
+            hit_ship = ship
+            hit_ship[4].add(position)
+            return_fleet.append(ship)
+        else:  
+            return_fleet.append(ship)
+        
+    return (return_fleet, hit_ship)
+    
+    
 
 def are_unsunk_ships_left(fleet):
     #remove pass and add your implementation
