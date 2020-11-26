@@ -77,8 +77,20 @@ def randomly_place_all_ships():
     pass  
 
 def check_if_hits(row, column, fleet):
-    #remove pass and add your implementation
-    pass
+    # remove pass and add your implementation
+    position = (row, column)
+    ocean = Ocean()
+    
+    hits = False
+    
+    for ship in fleet:
+        if hits:
+            break
+        ship_object = create_ship_object(ship[0], ship[1], ship[2], ship[3], ship[4])
+        ocean.place_ship_at(ship[0], ship[1], ship_object, ship_object.get_horizontal_bool())
+        hits = position in ship_object.get_ship_positions()
+      
+    return hits
 
 def hit(row, column, fleet):
     #remove pass and add your implementation

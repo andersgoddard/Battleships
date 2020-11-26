@@ -86,6 +86,12 @@ def test_ship_is_horizontal():
     ocean.place_ship_at(4, 4, cruiser, horizontal=False)
     assert cruiser.is_horizontal() == False
     
+def test_set_hits():
+    ship = Battleship()
+    assert ship.get_hits() == set()
+    ship.set_hits({(2, 3)})
+    assert ship.get_hits() == {(2, 3)}
+    
 def test_is_open_sea_method():
     ocean = Ocean()
     ocean.set_space_at(4, 5, Space())
@@ -103,7 +109,7 @@ def test_get_ship_positions():
     cruiser = Cruiser()
     ocean.place_ship_at(4, 4, cruiser, horizontal=False)
     assert cruiser.get_ship_positions() == [(4, 4), (5, 4), (6, 4)]
-    
+        
 def test_get_starting_row_column():
     ocean = Ocean()
     battleship = Battleship()
@@ -195,6 +201,7 @@ def test_is_sunk():
     assert is_sunk(s5) == False
 
 def test_ship_type():
+
     #add at least one test for ship_type by the deadline of session 7 assignment
     s1 = (0, 0, True, 4, {(0,0), (0,1), (0,2), (0,3)})
     assert ship_type(s1) == "Battleship"
@@ -211,14 +218,9 @@ def test_ship_type():
     
     s5 = (0, 0, True, 10, {(0,0)})
     assert ship_type(s5) == ""
-    
-def test_set_hits():
-    ship = Battleship()
-    assert ship.get_hits() == set()
-    ship.set_hits({(2, 3)})
-    assert ship.get_hits() == {(2, 3)}
   
 def test_is_open_sea():
+
 #    add at least one test for open_sea by the deadline of session 7 assignment
 
     fleet1 = []
@@ -231,6 +233,7 @@ def test_is_open_sea():
     # # #provide at least five tests in total for open_sea by the project submission deadline
  
 def test_ok_to_place_ship_at():
+
     #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
 
     fleet1 = []
@@ -246,8 +249,8 @@ def test_ok_to_place_ship_at():
     assert ok_to_place_ship_at(8, 8, False, 2, fleet2) == True
 
 def test_place_ship_at():
-    #add at least one test for place_ship_at by the deadline of session 7 assignment  
 
+    #add at least one test for place_ship_at by the deadline of session 7 assignment  
     fleet_v_1 = []
     ship1 = (2, 3, True, 4, {})
     fleet_v_2 = place_ship_at(2, 3, True, 4, fleet_v_1)
@@ -271,13 +274,19 @@ def test_place_ship_at():
     fleet_v_6 = place_ship_at(0, 9, False, 3, fleet_v_5)
     assert fleet_v_6 == [ship1, ship2, ship3, ship4, ship5]
 
-# def test_check_if_hits():
-    # # #add at least one test for check_if_hits by the deadline of session 7 assignment
+def test_check_if_hits():
+
+    # #add at least one test for check_if_hits by the deadline of session 7 assignment
+    fleet1 = [(2, 3, True, 4, {})]
+    assert check_if_hits(2, 3, fleet1) == True
     
-    # fleet2 = [(2, 3, True, 4, {})]
-    # assert check_if_hits(2, 3, fleet2) == True
+    # #provide at least five tests in total for check_if_hits by the project submission deadline 
+    assert check_if_hits(3, 3, fleet1) == False
+    assert check_if_hits(2, 4, fleet1) == True
+    assert check_if_hits(2, 7, fleet1) == False
     
-    # # #provide at least five tests in total for check_if_hits by the project submission deadline
+    fleet1 = [(2, 3, True, 4, {}), (8, 0, True, 3, {})]
+    assert check_if_hits(8, 1, fleet1) == True
 
 # def test_hit():
     # #add at least one test for hit by the deadline of session 7 assignment
