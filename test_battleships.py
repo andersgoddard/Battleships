@@ -304,11 +304,15 @@ def test_hit():
     fleet6 = [(2, 3, True, 4, {(2, 5)}), (8, 0, True, 3, {(8, 2), (8, 0)})]
     assert hit(2, 4, fleet6) == ([(2, 3, True, 4, {(2, 5), (2, 4)}), (8, 0, True, 3, {(8, 2), (8, 0)})], (2, 3, True, 4, {(2, 5), (2, 4)}))
 
-# def test_are_unsunk_ships_left():
-    # #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
+def test_are_unsunk_ships_left():
+    #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
 
-    # fleet3 = [(2, 3, True, 4, {2, 3})]
-    # assert are_unsunk_ships_left(fleet3) == True
+    fleet1 = [(2, 3, True, 4, {(2, 3)})]
+    assert are_unsunk_ships_left(fleet1) == True
     
-    # # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
+    # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
+    fleet2 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)})]
+    assert are_unsunk_ships_left(fleet2) == False
     
+    fleet3 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)}), (8, 0, True, 3, set())]
+    assert are_unsunk_ships_left(fleet3) == True

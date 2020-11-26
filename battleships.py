@@ -112,11 +112,15 @@ def hit(row, column, fleet):
         
     return (return_fleet, hit_ship)
     
-    
-
 def are_unsunk_ships_left(fleet):
     #remove pass and add your implementation
-    pass
+    sunk_ships = 0
+    
+    for ship in fleet:
+        if ship[3] == len(ship[4]):
+            sunk_ships += 1
+            
+    return sunk_ships != len(fleet)
 
 def main():
     #the implementation provided below is indicative only
