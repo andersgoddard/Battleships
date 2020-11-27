@@ -74,7 +74,16 @@ def place_ship_at(row, column, horizontal, length, fleet):
 
 def randomly_place_all_ships():
     #remove pass and add your implementation
-    pass  
+    ocean = Ocean()
+    fleet = Fleet()
+    ocean.build_random_fleet(fleet)   
+    game_fleet = []
+    
+    for ship in fleet.get_fleet():
+        game_fleet.append(ship.get_game_representation())
+     
+    return (game_fleet, ocean)
+    
 
 def check_if_hits(row, column, fleet):
     # remove pass and add your implementation
@@ -125,12 +134,13 @@ def are_unsunk_ships_left(fleet):
 def main():
     #the implementation provided below is indicative only
     #you should improve it or fully rewrite to provide better functionality (see readme file)
-    current_fleet = randomly_place_all_ships()
-
+    current_fleet, ocean = randomly_place_all_ships()
+    
     game_over = False
     shots = 0
 
     while not game_over:
+        ocean.display_ocean()
         loc_str = input("Enter row and colum to shoot (separted by space): ").split()    
         current_row = int(loc_str[0])
         current_column = int(loc_str[1])
@@ -143,7 +153,7 @@ def main():
         else:
             print("You missed!")
 
-        if not are_unsunk_shis_left(current_fleet): game_over = True
+        if not are_unsunk_ships_left(current_fleet): game_over = True
 
     print("Game over! You required", shots, "shots.")
 

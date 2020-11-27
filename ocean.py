@@ -20,9 +20,9 @@ class Ocean:
                 self.open_ocean_positions.append(position)    
                         
     def display_ocean(self):
-        for i in range(ocean.get_width()):
-            for j in range(ocean.get_height()):
-              print(ocean.get_char_at(i, j), end = " ")
+        for i in range(self.get_width()):
+            for j in range(self.get_height()):
+              print(self.get_char_at(i, j), end = " ")
             print('\n')
         
     def get_width(self):
