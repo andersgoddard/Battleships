@@ -66,15 +66,15 @@ def test_get_open_positions():
 def test_place_individual_ships():
     ocean = Ocean()
     ocean.place_ship_at(1, 1, Battleship(), horizontal=True)
-    assert ocean.get_type_at(1, 1) == "Battleship"
-    assert ocean.get_type_at(1, 2) == "Battleship"
-    assert ocean.get_type_at(1, 3) == "Battleship"
-    assert ocean.get_type_at(1, 4) == "Battleship"
+    assert ocean.get_type_at(1, 1) == "battleship"
+    assert ocean.get_type_at(1, 2) == "battleship"
+    assert ocean.get_type_at(1, 3) == "battleship"
+    assert ocean.get_type_at(1, 4) == "battleship"
     
     ocean.place_ship_at(4, 4, Cruiser(), horizontal=False)
-    assert ocean.get_type_at(4, 4) == "Cruiser"
-    assert ocean.get_type_at(5, 4) == "Cruiser"
-    assert ocean.get_type_at(6, 4) == "Cruiser"
+    assert ocean.get_type_at(4, 4) == "cruiser"
+    assert ocean.get_type_at(5, 4) == "cruiser"
+    assert ocean.get_type_at(6, 4) == "cruiser"
     assert ocean.get_char_at(7, 4) == '~'
     
 def test_ship_is_horizontal():
@@ -204,17 +204,17 @@ def test_ship_type():
 
     #add at least one test for ship_type by the deadline of session 7 assignment
     s1 = (0, 0, True, 4, {(0,0), (0,1), (0,2), (0,3)})
-    assert ship_type(s1) == "Battleship"
+    assert ship_type(s1) == "battleship"
 
     #provide at least five tests in total for ship_type by the project submission deadline    
     s2 = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
-    assert ship_type(s2) == "Cruiser"
+    assert ship_type(s2) == "cruiser"
     
     s3 = (8, 8, False, 2, {(8,8)})
-    assert ship_type(s3) == "Destroyer"
+    assert ship_type(s3) == "destroyer"
     
     s4 = (9, 9, True, 1, set())
-    assert ship_type(s4) == "Submarine"
+    assert ship_type(s4) == "submarine"
     
     s5 = (0, 0, True, 10, {(0,0)})
     assert ship_type(s5) == ""

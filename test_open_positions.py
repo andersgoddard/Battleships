@@ -135,3 +135,10 @@ def test_edge_case_open_positions():
     assert (ocean.is_open_position((1, 3))) == False
     assert (ocean.is_open_position((1, 4))) == False
     assert (ocean.is_open_position((1, 5))) == True
+    
+def test_vlad_cases():
+    ocean = Ocean()
+    ocean.place_ship_at(2, 3, Cruiser(), horizontal=False)
+    ocean.place_ship_at(6, 9, Battleship(), horizontal=False)
+    assert (ocean.is_open_position((5, 7))) == True
+    assert (ocean.is_open_position((5, 8))) == False # This passes here and in the first indicative test but is failing to recognise the destroyer starting at 5, 7 isn't valid...

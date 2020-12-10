@@ -59,9 +59,9 @@ def ok_to_place_ship_at(row, column, horizontal, length, fleet):
         if (horizontal and row+length > 10) or (not horizontal and column+length > 10):
             ok_to_place = False
         elif horizontal:
-            ok_to_place = is_open_sea(row+i, column, fleet)
-        else:
             ok_to_place = is_open_sea(row, column+i, fleet)
+        else:
+            ok_to_place = is_open_sea(row+i, column, fleet)
                 
     return ok_to_place
     

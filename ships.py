@@ -80,25 +80,25 @@ class Battleship(Ship):
         super().__init__()
         self._length = 4
         self.sunk_char_representation = 'B'
-        self.ship_type = "Battleship"        
+        self.ship_type = "battleship"        
         
 class Cruiser(Ship):
     def __init__(self):
         super().__init__()
         self._length = 3
         self.sunk_char_representation = 'C'
-        self.ship_type = "Cruiser"
+        self.ship_type = "cruiser"
         
 class Destroyer(Ship):
     def __init__(self):
         super().__init__()
         self._length = 2
         self.sunk_char_representation = 'D'
-        self.ship_type = "Destroyer"
+        self.ship_type = "destroyer"
 
 class Submarine(Ship):
     def __init__(self):
         super().__init__()
         self._length = 1
         self.sunk_char_representation = 'S'
-        self.ship_type = "Submarine"
+        self.ship_type = "submarine"
