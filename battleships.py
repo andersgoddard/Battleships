@@ -155,6 +155,7 @@ def main():
         loc_str = input("Enter row and colum to shoot (separted by space): ").split()    
         current_row = int(loc_str[0])
         current_column = int(loc_str[1])
+        ocean.take_shot(current_row, current_column)
         shots += 1
         if check_if_hits(current_row, current_column, current_fleet):
             print("You have a hit!")

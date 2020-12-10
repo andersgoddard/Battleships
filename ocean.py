@@ -19,7 +19,7 @@ class Ocean:
                 position = (row, column)
                 self.open_ocean_positions.append(position)    
                         
-    def display_ocean(self):
+    def display_ocean(self): # This is currently displaying a sunk ship but not showing checked positions
         for i in range(self.get_width()):
             for j in range(self.get_height()):
               print(self.get_char_at(i, j), end = " ")
