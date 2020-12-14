@@ -1,9 +1,15 @@
+from os import system, name 
 from ocean import *
 from ships import *
 from fleet import *
 
 #see the readme.md file for description and data 
 
+def clear_console():   
+    if name == 'nt': 
+        _ = system('cls') #windows   
+    else: 
+        _ = system('clear') #others
 
 def is_sunk(ship):
     #remove pass and add your implementation
@@ -149,21 +155,24 @@ def main():
     
     game_over = False
     shots = 0
+    game_feedback = ""
 
     while not game_over:
+        clear_console()
+        print(game_feedback)
         ocean.display_ocean()
-        loc_str = input("Enter row and colum to shoot (separted by space): ").split()    
+        loc_str = input("Enter row and colum to shoot (separated by space): ").split()    
         current_row = int(loc_str[0])
         current_column = int(loc_str[1])
         ocean.take_shot(current_row, current_column)
         shots += 1
         if check_if_hits(current_row, current_column, current_fleet):
-            print("You have a hit!")
+            game_feedback = "You have a hit!\n"
             (current_fleet, ship_hit) = hit(current_row, current_column, current_fleet)
             if is_sunk(ship_hit):
-                print("You sank a " + ship_type(ship_hit) + "!")
+                game_feedback += "You sank a " + ship_type(ship_hit) + "!\n"
         else:
-            print("You missed!")
+            game_feedback = "You missed!\n"
 
         if not are_unsunk_ships_left(current_fleet): game_over = True
 
