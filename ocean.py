@@ -154,9 +154,13 @@ class Ocean:
                 ship = Destroyer()
             else:
                 ship = Submarine()
+            print(ship.get_game_representation())
             horizontal = random.choice(orientation_choices)
+            print(horizontal)
             open_positions = self.get_open_positions(ship, horizontal)
+            print(open_positions)
             open_position = random.choice(open_positions)
+            print(open_position)
             row = open_position[0]
             column = open_position[1]
             self.place_ship_at(row, column, ship, horizontal)
