@@ -94,7 +94,7 @@ def my_randomly_place_all_ships():
     #remove pass and add your implementation
     ocean = Ocean()
     fleet = Fleet()
-    ocean.build_random_fleet(fleet)   
+    ocean.build_random_fleet(fleet)   # Something in this is causing a bug
     game_fleet = []
     
     for ship in fleet.get_fleet():

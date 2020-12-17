@@ -232,7 +232,7 @@ def test_is_open_sea():
     
     # # #provide at least five tests in total for open_sea by the project submission deadline
  
-def test_ok_to_place_ship_at():
+def test_ok_to_place_ship_at1():
 
     #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
 
@@ -247,6 +247,10 @@ def test_ok_to_place_ship_at():
     fleet2 = [(2, 3, True, 4, {(2, 3)}),(5, 5, False, 2, set())]
     assert ok_to_place_ship_at(8, 8, True, 4, fleet2) == False
     assert ok_to_place_ship_at(8, 8, False, 2, fleet2) == True
+
+def test_ok_to_place_ship_at2():
+    fleet = [(5, 8, False, 3, set())]
+    assert ok_to_place_ship_at(3, 7, False, 2, fleet) == False
 
 def test_place_ship_at():
 
@@ -316,3 +320,16 @@ def test_are_unsunk_ships_left():
     
     fleet3 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)}), (8, 0, True, 3, set())]
     assert are_unsunk_ships_left(fleet3) == True
+
+def test_get_closed_positions():
+    ocean = Ocean()
+    ocean.place_ship_at(2, 0, Battleship(), horizontal=False)
+    ocean.place_ship_at(4, 5, Cruiser(), horizontal=False)
+    ocean.place_ship_at(5, 8, Cruiser(), horizontal=False)
+    ocean.place_ship_at(9, 8, Destroyer(), horizontal=True)
+    ocean.place_ship_at(1, 9, Destroyer(), horizontal=False)
+    open_positions = ocean.get_open_positions(Destroyer(), horizontal=False)
+    print(open_positions)
+    assert ((3, 7) in open_positions) == False
+    
+
