@@ -321,15 +321,17 @@ def test_are_unsunk_ships_left():
     fleet3 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)}), (8, 0, True, 3, set())]
     assert are_unsunk_ships_left(fleet3) == True
 
-def test_get_closed_positions():
+def test_get_open_positions1():
     ocean = Ocean()
     ocean.place_ship_at(2, 0, Battleship(), horizontal=False)
     ocean.place_ship_at(4, 5, Cruiser(), horizontal=False)
     ocean.place_ship_at(5, 8, Cruiser(), horizontal=False)
     ocean.place_ship_at(9, 8, Destroyer(), horizontal=True)
     ocean.place_ship_at(1, 9, Destroyer(), horizontal=False)
-    open_positions = ocean.get_open_positions(Destroyer(), horizontal=False)
-    print(open_positions)
-    assert ((3, 7) in open_positions) == False
+    open_positions_1 = ocean.get_open_positions(Destroyer(), horizontal=False)
+    assert ((3, 7) in open_positions_1) == False
+    open_positions_2 = ocean.get_open_positions(Destroyer(), horizontal=True)
+    assert ((3, 7) in open_positions_2) == False
+    
     
 

@@ -93,7 +93,10 @@ class Ocean:
                 ship.add_position(row+i, column)                
                 self.set_space_at(row+i, column, ship.get_position(row+i, column))
             resulting_closed_positions.add(position)
+            print("Position is " + str(position))
+            print("First lot of closed positions are " + str(resulting_closed_positions))
             resulting_closed_positions = resulting_closed_positions.union(self.get_surrounding_positions(position))
+            print("Second lot of closed positions are " + str(resulting_closed_positions))
         return resulting_closed_positions
         
     def remove_closed_positions(self, positions):
@@ -102,7 +105,9 @@ class Ocean:
                 self.open_ocean_positions.remove(position)
     
     def get_open_positions(self, ship=None, horizontal=-1):
-    
+    # This method needs to identify when a subsequent position in a ship is not in the open_positions list and therefore remove the initial position from the open_positions list as well
+    # Commented out code caused issues in multiple tests and must be wrong         
+        
         if horizontal == -1:
             return self.open_ocean_positions
                 
@@ -112,10 +117,18 @@ class Ocean:
             for position in self.open_ocean_positions:
                 if (position[1] + ship.get_length()) > self._width:
                     return_positions.remove(position)
+                # for i in range(ship.get_length()):
+                    # if ((position[0], position[1]+i) not in self.open_ocean_positions):
+                        # return_positions.remove(position)
+                        # break
         else:
             for position in self.open_ocean_positions:
                 if (position[0] + ship.get_length()) > self._height:
                     return_positions.remove(position)
+                # for i in range(ship.get_length()):
+                    # if ((position[0]+i, position[1]) not in self.open_ocean_positions):
+                        # return_positions.remove(position)
+                        # break
         
         return return_positions
     
