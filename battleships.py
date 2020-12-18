@@ -94,7 +94,7 @@ def my_randomly_place_all_ships():
     #remove pass and add your implementation
     ocean = Ocean()
     fleet = Fleet()
-    ocean.build_random_fleet(fleet)   # Something in this is causing a bug
+    ocean.build_random_fleet(fleet)    
     game_fleet = []
     
     for ship in fleet.get_fleet():
@@ -159,9 +159,8 @@ def main():
     game_feedback = ""
     print_fleet = False
 
-    # There is a problem with the placement of ships on the board - it is possible to set the starting position of a ship in a place where the remainder of the ship clashes with the closed positions
     while not game_over: 
-#        clear_console()
+        clear_console()
         print(game_feedback)
         if print_fleet:
             print(current_fleet)
