@@ -189,14 +189,18 @@ def main():
         if not are_unsunk_ships_left(current_fleet): 
             game_over = True
             game_won = True
-            
+    
+    clear_console()
     final_message = "Game over! "
     if game_won: 
         final_message += "You required "
         final_message += str(shots)
-        final_message += " shots."
-
+        final_message += " shots.\n"
+        
     print(final_message)
+    ocean.display_ocean()
+
+
 
 
 if __name__ == '__main__': #keep this in
