@@ -3,8 +3,6 @@ from ocean import *
 from ships import *
 from fleet import *
 
-#see the readme.md file for description and data 
-
 def clear_console():   
     if name == 'nt': 
         _ = system('cls') #windows   
@@ -12,11 +10,9 @@ def clear_console():
         _ = system('clear') #others
 
 def is_sunk(ship):
-    #remove pass and add your implementation
     return ship[3] == len(ship[4])
 
 def ship_type(ship):
-    #remove pass and add your implementation
     length = ship[3]
     if length == 4:
         return Battleship().get_type()
@@ -55,7 +51,6 @@ def is_open_sea(row, column, fleet):
     return check_position not in closed_positions
 
 def ok_to_place_ship_at(row, column, horizontal, length, fleet):
-    #remove pass and add your implementation
     ok_to_place = True
     
     for i in range(length):       
@@ -72,14 +67,12 @@ def ok_to_place_ship_at(row, column, horizontal, length, fleet):
     return ok_to_place
     
 def place_ship_at(row, column, horizontal, length, fleet):
-    #remove pass and add your implementation
     new_fleet = fleet
     new_ship = (row, column, horizontal, length, set())
     new_fleet.append(new_ship)
     return new_fleet
 
 def randomly_place_all_ships():
-    #remove pass and add your implementation
     ocean = Ocean()
     fleet = Fleet()
     ocean.build_random_fleet(fleet)   
@@ -91,7 +84,6 @@ def randomly_place_all_ships():
     return game_fleet
     
 def my_randomly_place_all_ships():
-    #remove pass and add your implementation
     ocean = Ocean()
     fleet = Fleet()
     ocean.build_random_fleet(fleet)    
@@ -103,7 +95,6 @@ def my_randomly_place_all_ships():
     return (game_fleet, ocean)    
 
 def check_if_hits(row, column, fleet):
-    # remove pass and add your implementation
     position = (row, column)
     ocean = Ocean()
     
@@ -119,7 +110,6 @@ def check_if_hits(row, column, fleet):
     return hits
 
 def hit(row, column, fleet):
-    #remove pass and add your implementation
     position = (row, column)
     ocean = Ocean()
 
@@ -139,7 +129,6 @@ def hit(row, column, fleet):
     return (return_fleet, hit_ship)
     
 def are_unsunk_ships_left(fleet):
-    #remove pass and add your implementation
     sunk_ships = 0
     
     for ship in fleet:
@@ -149,8 +138,6 @@ def are_unsunk_ships_left(fleet):
     return sunk_ships != len(fleet)
 
 def main():
-    #the implementation provided below is indicative only
-    #you should improve it or fully rewrite to provide better functionality (see readme file)
     current_fleet, ocean = my_randomly_place_all_ships()
     
     game_over = False
@@ -180,7 +167,7 @@ def main():
             game_feedback = "\n\n\n"
         else:
             try:
-                loc_str = loc_str.split()    # Need a try except to catch invalid entries here.
+                loc_str = loc_str.split()
                 current_row = int(loc_str[0])
                 current_column = int(loc_str[1])
                 ocean.take_shot(current_row, current_column)
