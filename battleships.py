@@ -158,33 +158,44 @@ def main():
     shots = 0
     game_feedback = ""
     print_fleet = False
+    first_loop = True
 
     while not game_over: 
         clear_console()
+        if first_loop: 
+            first_loop = False
+            print("BATTLESHIPS by Andrew Goddard\n")
         print(game_feedback)
         if print_fleet:
             print(current_fleet)
             print_fleet = False
         else:
             ocean.display_ocean()
-        loc_str = input("Enter row and column separated by a space to shoot (type \"quit\" to end the game early): ")
+        loc_str = input("\nEnter row and column separated by a space to shoot (type \"quit\" to end the game early): ")
         if loc_str.lower() == "quit":
             game_over = True
+            game_feedback = "\n"
         elif loc_str.lower() == "cheat":
             print_fleet = True
+            game_feedback = "\n\n\n"
         else:
-            loc_str = loc_str.split()    # Need a try except to catch invalid entries here.
-            current_row = int(loc_str[0])
-            current_column = int(loc_str[1])
-            ocean.take_shot(current_row, current_column)
-            shots += 1
-            if check_if_hits(current_row, current_column, current_fleet):
-                game_feedback = "You have a hit!\n"
-                (current_fleet, ship_hit) = hit(current_row, current_column, current_fleet)
-                if is_sunk(ship_hit):
-                    game_feedback += "You sank a " + ship_type(ship_hit) + "!\n"
-            else:
-                game_feedback = "You missed!\n"
+            try:
+                loc_str = loc_str.split()    # Need a try except to catch invalid entries here.
+                current_row = int(loc_str[0])
+                current_column = int(loc_str[1])
+                ocean.take_shot(current_row, current_column)
+                shots += 1
+                if check_if_hits(current_row, current_column, current_fleet):
+                    game_feedback = "You have a hit!\n"
+                    (current_fleet, ship_hit) = hit(current_row, current_column, current_fleet)
+                    if is_sunk(ship_hit):
+                        game_feedback += "You sank a " + ship_type(ship_hit) + "!\n"
+                    else:
+                        game_feedback += "\n"
+                else:
+                    game_feedback = "You missed!\n\n"
+            except:
+                game_feedback = "That is an invalid entry!\n\n"
 
         if not are_unsunk_ships_left(current_fleet): 
             game_over = True
@@ -195,7 +206,9 @@ def main():
     if game_won: 
         final_message += "You required "
         final_message += str(shots)
-        final_message += " shots.\n"
+        final_message += " shots.\n\n"
+    else:
+        final_message += "You gave up!\n\n"
         
     print(final_message)
     ocean.display_ocean()
