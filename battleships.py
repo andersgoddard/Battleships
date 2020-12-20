@@ -200,8 +200,5 @@ def main():
     print(final_message)
     ocean.display_ocean()
 
-
-
-
 if __name__ == '__main__': #keep this in
    main()

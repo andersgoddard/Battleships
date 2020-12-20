@@ -186,8 +186,8 @@ def test_game_representations():
 def test_is_sunk():
     s = (2, 3, False, 3, {(2,3), (3,3), (4,3)})
     assert is_sunk(s) == True
-    #add at least four more tests for is_sunk by the project submission deadline
     
+    #add at least four more tests for is_sunk by the project submission deadline
     s2 = (9, 9, True, 1, set())
     assert is_sunk(s2) == False
     
@@ -201,7 +201,6 @@ def test_is_sunk():
     assert is_sunk(s5) == False
 
 def test_ship_type():
-
     #add at least one test for ship_type by the deadline of session 7 assignment
     s1 = (0, 0, True, 4, {(0,0), (0,1), (0,2), (0,3)})
     assert ship_type(s1) == "battleship"
@@ -220,37 +219,29 @@ def test_ship_type():
     assert ship_type(s5) == ""
   
 def test_is_open_sea():
-
-#    add at least one test for open_sea by the deadline of session 7 assignment
-
+    #add at least one test for open_sea by the deadline of session 7 assignment
     fleet1 = []
     assert is_open_sea(2, 3, fleet1) == True
-    
+        
+    #provide at least five tests in total for open_sea by the project submission deadline
     fleet2 = [(2, 3, True, 4, {(2, 3)})]
     assert is_open_sea(2, 3, fleet2) == False
     assert is_open_sea(8, 8, fleet2) == True
-    
-    # # #provide at least five tests in total for open_sea by the project submission deadline
+    assert is_open_sea(3, 7, fleet2) == False
+    assert is_open_sea(3, 8, fleet2) == True    
  
-def test_ok_to_place_ship_at1():
-
+def test_ok_to_place_ship_at():
     #add at least one test for ok_to_place_ship_at by the deadline of session 7 assignment
-
     fleet1 = []
     assert ok_to_place_ship_at(2, 3, True, 4, fleet1) == True
         
-    # #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline
-    
+    #provide at least five tests in total for ok_to_place_ship_at by the project submission deadline    
     fleet2 = [(2, 3, True, 4, {(2, 3)})]
     assert ok_to_place_ship_at(2, 3, True, 4, fleet2) == False
     assert ok_to_place_ship_at(5, 5, False, 2, fleet2) == True
     fleet2 = [(2, 3, True, 4, {(2, 3)}),(5, 5, False, 2, set())]
     assert ok_to_place_ship_at(8, 8, True, 4, fleet2) == False
     assert ok_to_place_ship_at(8, 8, False, 2, fleet2) == True
-
-def test_ok_to_place_ship_at2():
-    fleet = [(5, 8, False, 3, set())]
-    assert ok_to_place_ship_at(3, 7, False, 2, fleet) == False
 
 def test_place_ship_at():
 
@@ -261,7 +252,6 @@ def test_place_ship_at():
     assert fleet_v_2 == [ship1]
     
     # #provide at least five tests in total for place_ship_at by the project submission deadline
-
     ship2 = (8, 8, False, 2, set())
     fleet_v_3 = place_ship_at(8, 8, False, 2, fleet_v_2)
     assert fleet_v_3 == [ship1, ship2]
@@ -310,16 +300,22 @@ def test_hit():
 
 def test_are_unsunk_ships_left():
     #add at least one test for are_unsunk_ships_left by the deadline of session 7 assignment
-
     fleet1 = [(2, 3, True, 4, {(2, 3)})]
     assert are_unsunk_ships_left(fleet1) == True
     
-    # #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
+    #provide at least five tests in total for are_unsunk_ships_left by the project submission deadline
     fleet2 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)})]
     assert are_unsunk_ships_left(fleet2) == False
     
     fleet3 = [(2, 3, True, 4, {(2, 3), (2, 4), (2, 5), (2, 6)}), (8, 0, True, 3, set())]
     assert are_unsunk_ships_left(fleet3) == True
+    
+    fleet4 = [(3, 1, True, 4, {(3, 2), (3, 1), (3, 3), (3, 4)}), (0, 5, True, 3, set()), (7, 9, False, 3, set()), (9, 3, True, 2, set()), (8, 7, False, 2, set()), (2, 6, False, 2, set()), (6, 7, False, 1, set()), (0, 0, False, 1, set()), (7, 1, False, 1, set()), (4, 8, True, 1, set())]
+    assert are_unsunk_ships_left(fleet4) == True
+    
+    fleet5 = [(3, 1, True, 4, {(3, 2), (3, 1), (3, 3), (3, 4)}), (0, 5, True, 3, {(0, 6), (0, 5), (0, 7)}), (7, 9, False, 3, {(8, 9), (7, 9), (9, 9)}), (9, 3, True, 2, {(9, 3), (9, 4)}), (8, 7, False, 2, {(8, 7), (9, 7)}), (2, 6, False, 2, {(3, 6), (2, 6)}), (6, 7, False, 1, {(6, 7)}), (0, 0, False, 1, {(0, 0)}), (7, 1, False, 1, {(7, 1)}), (4, 8, True, 1, {(4, 8)})]
+    assert are_unsunk_ships_left(fleet5) == False
+
 
 def test_get_open_positions1():
     ocean = Ocean()
@@ -332,6 +328,4 @@ def test_get_open_positions1():
     assert ((3, 7) in open_positions_1) == False
     open_positions_2 = ocean.get_open_positions(Destroyer(), horizontal=True)
     assert ((3, 7) in open_positions_2) == False
-    
-    
 
