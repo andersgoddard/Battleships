@@ -144,7 +144,6 @@ def main():
     game_won = False
     shots = 0
     game_feedback = ""
-    print_fleet = False
     first_loop = True
 
     while not game_over: 
@@ -153,18 +152,11 @@ def main():
             first_loop = False
             print("BATTLESHIPS by Andrew Goddard\n")
         print(game_feedback)
-        if print_fleet:
-            print(current_fleet)
-            print_fleet = False
-        else:
-            ocean.display_ocean()
+        ocean.display_ocean()
         loc_str = input("\nEnter row and column separated by a space to shoot (type \"quit\" to end the game early): ")
         if loc_str.lower() == "quit":
             game_over = True
             game_feedback = "\n"
-        elif loc_str.lower() == "cheat":
-            print_fleet = True
-            game_feedback = "\n\n\n"
         else:
             try:
                 loc_str = loc_str.split()
